@@ -1,54 +1,51 @@
 package com.example.tryoutpas_25_33;
 
+
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.thesportsdb.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_layout, new HomeFragment())
+                .commit();
 
-        APIService api = retrofit.create(APIService.class);
-        String leagueName = getIntent().getStringExtra("LEAGUE_NAME");
-        Call<TeamResponse> call = api.getTeamsByLeague(leagueName);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            Fragment fragment = null;
+            int itemId = item.getItemId();
 
-        call.enqueue(new Callback<TeamResponse>() {
-            @Override
-            public void onResponse(Call<TeamResponse> call, Response<TeamResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    recyclerView.setVisibility(View.VISIBLE);
-
-                    teamList.clear();
-                    teamList.addAll(response.body().getTeams());
-                    adapter.notifyDataSetChanged();
-                }
-                pbLoading.setVisibility(View.GONE);
+            if (itemId == R.id.nav_home) {
+                fragment = new HomeFragment();
+            } else if (itemId == R.id.nav_dashboard) {
+                fragment = new LeagueFragment();
+            } else if (itemId == R.id.nav_notifications) {
+                fragment = new ProfileFragment();
             }
 
-            public void onFailure(Call<TeamResponse> call, Throwable t) {
-
+            if (fragment != null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_layout, fragment)
+                        .commit();
+                return true;
             }
+            return false;
         });
     }
 }
