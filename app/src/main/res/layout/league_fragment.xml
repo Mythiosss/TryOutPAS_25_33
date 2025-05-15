@@ -1,40 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="24dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pilih Liga"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="24dp" />
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/laligabtn"
+            android:id="@+id/btnLoadTeams"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="⚽ La Liga"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#E74C3C"
-            android:textColor="#FFFFFF" />
+            android:text="Tampilkan Tim" />
 
-        <Button
-            android:id="@+id/premierbtn"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLiga"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="🏴 Premier League"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="#3498DB"
-            android:textColor="#FFFFFF" />
-
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
     </LinearLayout>
-</ScrollView>
