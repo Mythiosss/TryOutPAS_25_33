@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             if (itemId == R.id.nav_home) {
                 fragment = new HomeFragment();
             } else if (itemId == R.id.nav_dashboard) {
-                fragment = new LeagueFragment();
+                fragment = new LeagueSelect();
             } else if (itemId == R.id.nav_notifications) {
                 fragment = new ProfileFragment();
             }

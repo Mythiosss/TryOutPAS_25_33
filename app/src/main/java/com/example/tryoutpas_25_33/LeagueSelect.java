@@ -15,12 +15,12 @@ public class LeagueSelect extends Fragment {
 
     private Button buttonLaliga;
     private Button buttonPremier;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.league_fragment, container, false); // Make sure layout name is correct
+        // GANTI layout-nya ke league_select_fragment
+        View view = inflater.inflate(R.layout.league_select_fragment, container, false);
 
         buttonLaliga = view.findViewById(R.id.laligabtn);
         buttonPremier = view.findViewById(R.id.premierbtn);
@@ -31,11 +31,12 @@ public class LeagueSelect extends Fragment {
         return view;
     }
 
+
     private void loadLeagueFragment(String leagueName) {
         LeagueFragment leagueFragment = LeagueFragment.newInstance(leagueName);
 
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, leagueFragment);
+        transaction.replace(R.id.frame_layout, leagueFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
