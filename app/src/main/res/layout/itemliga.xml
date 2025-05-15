@@ -14,13 +14,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/.textViewTeamName"
+        android:id="@+id/textViewTeamName"
         android:text="NamaTim"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/.textViewStadium"
+        android:id="@+id/textViewStadium"
         android:text="NamaStadiun"/>
 
 
