@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,7 @@ public class LeagueFragment extends Fragment {
     private TeamAdapter adapter;
     private RecyclerView recyclerView;
     private String leagueName;
+    private ProgressBar pbLoading;
 
     public static LeagueFragment newInstance(String leagueName) {
         LeagueFragment fragment = new LeagueFragment();
@@ -54,7 +56,7 @@ public class LeagueFragment extends Fragment {
         }
 
         recyclerView = view.findViewById(R.id.rvLiga);
-
+        pbLoading = view.findViewById(R.id.pbLoading);
         adapter = new TeamAdapter(teamList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
@@ -63,6 +65,7 @@ public class LeagueFragment extends Fragment {
     }
 
     private void loadTeams() {
+        pbLoading.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -76,6 +79,7 @@ public class LeagueFragment extends Fragment {
         call.enqueue(new Callback<TeamResponse>() {
             @Override
             public void onResponse(Call<TeamResponse> call, Response<TeamResponse> response) {
+                pbLoading.setVisibility(View.GONE);
                 if (response.isSuccessful() && response.body() != null && response.body().getTeams() != null) {
                     recyclerView.setVisibility(View.VISIBLE);
                     teamList.clear();
@@ -84,6 +88,7 @@ public class LeagueFragment extends Fragment {
                 } else {
                     showError("No teams found or error in response");
                 }
+
             }
 
             @Override
