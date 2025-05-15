@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:padding="24dp">
 
-    <TextView
-
-      
-        android:text="League Fragment"
-
-        android:textSize="24sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/laligabtn"
-        android:text="Laliga"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/premierbtn"
-        android:text="Premier"/>
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pilih Liga"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/laligabtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⚽ La Liga"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#E74C3C"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/premierbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🏴 Premier League"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#3498DB"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+</ScrollView>
